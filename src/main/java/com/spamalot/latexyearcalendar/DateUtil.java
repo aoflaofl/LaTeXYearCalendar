@@ -1,12 +1,11 @@
-/**
- * 
- */
-package com.spamalot.LaTeXYearCalendar;
+package com.spamalot.latexyearcalendar;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
 
 /**
+ * Util functions.
+ * 
  * @author johannsg
  *
  */
@@ -20,8 +19,7 @@ public final class DateUtil {
   /**
    * Return a DateTime of the Sunday before the DateTime handed in.
    * 
-   * @param in
-   *          A date
+   * @param in A date
    * @return a DateTime of the Sunday
    */
   public static DateTime getPreviousSunday(final DateTime in) {
@@ -34,8 +32,7 @@ public final class DateUtil {
   /**
    * Return a DateTime of the Saturday after the DateTime handed in.
    * 
-   * @param in
-   *          A Date
+   * @param in A Date
    * @return a DateTime of the Saturday
    */
   public static DateTime getFollowingSaturday(final DateTime in) {
@@ -48,8 +45,7 @@ public final class DateUtil {
   /**
    * Return the number (0 .. 6) for a day of the week, 0 is Sunday.
    * 
-   * @param in
-   *          A Date
+   * @param in A Date
    * @return Numerical day of the week with Sunday as 0.
    */
   private static int getDayOfWeekZeroSunday(final DateTime in) {

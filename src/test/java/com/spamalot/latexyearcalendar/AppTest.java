@@ -1,4 +1,4 @@
-package com.spamalot.LaTeXYearCalendar;
+package com.spamalot.latexyearcalendar;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

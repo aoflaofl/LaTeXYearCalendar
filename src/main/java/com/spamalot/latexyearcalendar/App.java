@@ -1,8 +1,8 @@
-package com.spamalot.LaTeXYearCalendar;
-
-import org.joda.time.DateTime;
+package com.spamalot.latexyearcalendar;
 
 import java.util.Locale;
+
+import org.joda.time.DateTime;
 
 /**
  * Hello world.
@@ -18,8 +18,7 @@ public final class App {
   /**
    * Do all the things.
    * 
-   * @param args
-   *          The arguments to the program
+   * @param args The arguments to the program
    */
   public static void main(final String[] args) {
     DateTime dt = new DateTime();
@@ -65,12 +64,12 @@ public final class App {
     int monthNum = in.getMonthOfYear();
     int yearNum = in.getYear();
     for (int week = 0; week < 6; week++) {
-     // if (DateUtil.getPreviousSunday(da).getMonthOfYear() == monthNum
-     //     || DateUtil.getPreviousSunday(da).getYear() != yearNum) {
-        System.out.print("\\tiny " + da.getWeekOfWeekyear() + " ");
-     // } else {
-     //   System.out.print(" ");
-     // }
+      // if (DateUtil.getPreviousSunday(da).getMonthOfYear() == monthNum
+      // || DateUtil.getPreviousSunday(da).getYear() != yearNum) {
+      System.out.print("\\tiny " + da.getWeekOfWeekyear() + " ");
+      // } else {
+      // System.out.print(" ");
+      // }
       outputWeek(DateUtil.getPreviousSunday(da), in.getMonthOfYear(), in.getYear());
       da = da.plusDays(7);
     }
