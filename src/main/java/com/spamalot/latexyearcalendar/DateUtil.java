@@ -10,9 +10,7 @@ import org.joda.time.DateTimeConstants;
  *
  */
 public final class DateUtil {
-  /**
-   * Nothing.
-   */
+  /** Nothing. */
   private DateUtil() {
   }
 

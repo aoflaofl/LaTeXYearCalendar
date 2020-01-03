@@ -5,13 +5,12 @@ import java.util.Locale;
 import org.joda.time.DateTime;
 
 /**
- * Hello world.
+ * Make a calendar.
  *
  */
 public final class App {
-  /**
-   * Construct nothing.
-   */
+
+  /** Construct nothing. */
   private App() {
   }
 
@@ -61,8 +60,8 @@ public final class App {
     printDayHeader();
     DateTime da = in;
 
-    int monthNum = in.getMonthOfYear();
-    int yearNum = in.getYear();
+    // int monthNum = in.getMonthOfYear();
+    // int yearNum = in.getYear();
     for (int week = 0; week < 6; week++) {
       // if (DateUtil.getPreviousSunday(da).getMonthOfYear() == monthNum
       // || DateUtil.getPreviousSunday(da).getYear() != yearNum) {
