@@ -9,6 +9,7 @@ import org.joda.time.DateTime;
  *
  */
 public final class App {
+  private static boolean LATEX = false;
 
   /** Construct nothing. */
   private App() {
@@ -20,6 +21,7 @@ public final class App {
    * @param args The arguments to the program
    */
   public static void main(final String[] args) {
+
     DateTime dt = new DateTime();
     String monthName = dt.monthOfYear().getAsText();
     String frenchShortName = dt.monthOfYear().getAsShortText(Locale.FRENCH);
@@ -39,10 +41,12 @@ public final class App {
     for (int month = 1; month <= 12; month++) {
       DateTime da = new DateTime().withDayOfMonth(1).withMonthOfYear(month);
       outputMonth(da);
-      if (month % 3 == 0) {
-        System.out.println("\\vfill%");
-      } else {
-        System.out.println("\\hfill%");
+      if (LATEX) {
+        if (month % 3 == 0) {
+          System.out.println("\\vfill%");
+        } else {
+          System.out.println("\\hfill%");
+        }
       }
     }
   }
@@ -65,7 +69,9 @@ public final class App {
     for (int week = 0; week < 6; week++) {
       // if (DateUtil.getPreviousSunday(da).getMonthOfYear() == monthNum
       // || DateUtil.getPreviousSunday(da).getYear() != yearNum) {
-      System.out.print("\\tiny " + da.getWeekOfWeekyear() + " ");
+      if (LATEX) {
+        System.out.print("\\tiny " + da.getWeekOfWeekyear() + " ");
+      }
       // } else {
       // System.out.print(" ");
       // }
@@ -76,34 +82,70 @@ public final class App {
   }
 
   private static void outputWeek(final DateTime in, final int month, final int year) {
+    char sep;
+    if (LATEX) {
+      sep = '&';
+    } else {
+      sep = '|';
+    }
     DateTime da = in;
+    String spacing;
     for (int day = 0; day < 7; day++) {
       if (da.getMonthOfYear() == month || da.getYear() != year) {
-        System.out.print("& " + da.getDayOfMonth() + " ");
+        int dom = da.getDayOfMonth();
+        if (dom < 10) {
+          spacing = "  ";
+        } else {
+          spacing = " ";
+        }
+        System.out.print(sep + spacing + da.getDayOfMonth() + " ");
       } else {
-        System.out.print("& ");
+        System.out.print(sep + "    ");
       }
       da = da.plusDays(1);
     }
-    System.out.println("\\\\ \\cline{2-8}");
+    if (LATEX) {
+      System.out.println("\\\\ \\cline{2-8}");
+    } else {
+      System.out.println("|");
+    }
   }
 
   private static void printTableHeader() {
-    System.out.println("\\begin{tabular}{r@{\\hskip1pt} | c | c | c | c | c | c | c |} \\cline{2-8}");
+    if (LATEX) {
+      System.out.println("\\begin{tabular}{r@{\\hskip1pt} | c | c | c | c | c | c | c |} \\cline{2-8}");
+    }
   }
 
   private static void printTableFooter() {
-    System.out.println("\\end{tabular}%");
+    if (LATEX) {
+      System.out.println("\\end{tabular}%");
+    } else {
+      System.out.println("------------------------------------");
+    }
   }
 
   private static void printMonthName(final String month) {
-    System.out.print("& \\multicolumn{7}{c|}{\\large ");
-    System.out.print(month);
-    System.out.println(" } \\\\[-1pt] \\cline{2-8}");
+    if (LATEX) {
+      System.out.print("& \\multicolumn{7}{c|}{\\large ");
+    } else {
+      // System.out.println("\n------------------------------------");
+      System.out.println("\n");
+    }
+    System.out.println(month);
+    if (LATEX) {
+      System.out.println(" } \\\\[-1pt] \\cline{2-8}");
+    } else {
+      System.out.println("------------------------------------");
+    }
   }
 
   private static void printDayHeader() {
-    System.out
-        .println("& S & \\textbf{M} & \\textbf{T} & \\textbf{W} & \\textbf{T} & \\textbf{F} & S \\\\ \\cline{2-8}");
+    if (LATEX) {
+      System.out
+          .println("& S & \\textbf{M} & \\textbf{T} & \\textbf{W} & \\textbf{T} & \\textbf{F} & S \\\\ \\cline{2-8}");
+    } else {
+      System.out.println("| Su | Mo | Tu | We | Th | Fr | Sa |");
+    }
   }
 }
