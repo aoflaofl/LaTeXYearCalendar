@@ -71,10 +71,9 @@ public final class App {
       // || DateUtil.getPreviousSunday(da).getYear() != yearNum) {
       if (LATEX) {
         System.out.print("\\tiny " + da.getWeekOfWeekyear() + " ");
+      } else {
+        System.out.printf("%2d", da.getWeekOfWeekyear());
       }
-      // } else {
-      // System.out.print(" ");
-      // }
       outputWeek(DateUtil.getPreviousSunday(da), in.getMonthOfYear(), in.getYear());
       da = da.plusDays(7);
     }
@@ -121,7 +120,7 @@ public final class App {
     if (LATEX) {
       System.out.println("\\end{tabular}%");
     } else {
-      System.out.println("------------------------------------");
+      System.out.println("  ------------------------------------");
     }
   }
 
@@ -132,11 +131,11 @@ public final class App {
       // System.out.println("\n------------------------------------");
       System.out.println("\n");
     }
-    System.out.println(month);
+    System.out.println("  " + month);
     if (LATEX) {
       System.out.println(" } \\\\[-1pt] \\cline{2-8}");
     } else {
-      System.out.println("------------------------------------");
+      System.out.println("  ------------------------------------");
     }
   }
 
@@ -145,7 +144,7 @@ public final class App {
       System.out
           .println("& S & \\textbf{M} & \\textbf{T} & \\textbf{W} & \\textbf{T} & \\textbf{F} & S \\\\ \\cline{2-8}");
     } else {
-      System.out.println("| Su | Mo | Tu | We | Th | Fr | Sa |");
+      System.out.println("  | Su | Mo | Tu | We | Th | Fr | Sa |");
     }
   }
 }

@@ -15,14 +15,15 @@ public final class DateUtil {
   }
 
   /**
-   * Return a DateTime of the Sunday before the DateTime handed in.
+   * Return a DateTime of the Sunday before the DateTime handed in, or of in if it
+   * is a Sunday.
    * 
    * @param in A date
    * @return a DateTime of the Sunday
    */
   public static DateTime getPreviousSunday(final DateTime in) {
 
-    DateTime result = in.plusDays(-1 * in.getDayOfWeek());
+    DateTime result = in.minusDays(in.getDayOfWeek() % 7);
 
     return result;
   }
